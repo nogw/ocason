@@ -1,0 +1,28 @@
+{
+  "name": "rejson",
+  "version": "1.0.0",
+  "license": "MIT",
+  "esy": {
+    "build": "dune build -p #{self.name}",
+    "buildsInSource": "_build",
+    "release": {
+      "releasedBinaries": [
+        "rejson.exe"
+      ]
+    }
+  },
+  "scripts": {
+    "watch": "esy dune build -p #{self.name} --watch",
+  	"start": "esy x #{self.name}.exe"
+  },
+  "dependencies": {
+	"ocaml": "~4.11.0",
+	"@esy-ocaml/reason": "^3.7.0",
+	"@opam/dune": "*",
+	"@opam/ppx_deriving": "5.2.1"
+  },
+  "devdependencies": {
+	"@opam/ocamlformat": "*",
+	"@opam/ocaml-lsp-server": "*"
+  }
+}

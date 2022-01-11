@@ -1,0 +1,4 @@
+(executable
+  (name rejson)
+  (public_name rejson.exe)
+  (preprocess (pps ppx_deriving.show ppx_deriving.eq)))

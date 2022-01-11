@@ -1,0 +1,10 @@
+(library
+  (name lib)
+  (libraries menhirLib)
+  (preprocess (pps ppx_deriving.show ppx_deriving.eq)))
+
+(ocamllex lexer)
+
+(menhir 
+  (flags --explain)
+  (modules parser))

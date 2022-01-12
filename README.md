@@ -15,6 +15,8 @@
     "name": "nogw",
     "years": 12,
     "emoji": "😀",
+    "weight": 56.5,
+    "number": null,
     "interests": ["fruits", "terraria", "functional programming"]
   }
 }

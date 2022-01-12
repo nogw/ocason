@@ -13,16 +13,18 @@
   },
   "scripts": {
     "watch": "esy dune build -p #{self.name} --watch",
-  	"start": "esy x #{self.name}.exe"
+    "start": "esy x #{self.name}.exe"
   },
   "dependencies": {
-	"ocaml": "~4.11.0",
-	"@esy-ocaml/reason": "^3.7.0",
-	"@opam/dune": "*",
-	"@opam/ppx_deriving": "5.2.1"
+    "ocaml": "~4.11.0",
+    "@esy-ocaml/reason": "^3.7.0",
+    "@opam/dune": "*",
+    "@opam/ppx_deriving": "5.2.1",
+    "@opam/menhir": "20211230",
+    "@opam/sedlex": "2.5"
   },
   "devdependencies": {
-	"@opam/ocamlformat": "*",
-	"@opam/ocaml-lsp-server": "*"
+    "@opam/ocamlformat": "*",
+    "@opam/ocaml-lsp-server": "*"
   }
 }

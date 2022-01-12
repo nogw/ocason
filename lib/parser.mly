@@ -4,7 +4,7 @@
 
 %token LEFTBRACE
 %token RIGHTBRACE
-// todo: float
+// todo: float, bool
 %token <int> INT
 %token <string> STRING
 %token LEFTBRACKET
@@ -34,8 +34,8 @@ array_values:
 
 obj: 
   | LEFTBRACE ; RIGHTBRACE                     { JsonObject([]) }
-  | LEFTBRACE ; op = obj_props ; RIGHTBRACE    { JsonObject(op) } 
+  | LEFTBRACE ; op = obj_props ; RIGHTBRACE    { JsonObject(List.rev(op)) } 
 
 obj_props:
   | s = STRING ; COLON ; v = value                             { [(s, v)] }
-  | ob = obj_props ; COMMA ; s = STRING ; COLON ; v = value { (s, v) :: ob }
+  | ob = obj_props ; COMMA ; s = STRING ; COLON ; v = value    { (s, v) :: ob }

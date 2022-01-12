@@ -12,16 +12,17 @@ let rec tokenizer = buf => {
 
   let hexdigit       = [%sedlex.regexp? '0'..'9' | 'a'..'f' | 'A'..'F'];
   let unsc_string    = [%sedlex.regexp? 0x20 .. 0x21 | 0x23 .. 0x5B | 0x5D .. 0x10FFFF ]
-  let escaped_string = [%sedlex.regexp? ("\\", 0x22 | 0x5C | 0x2F | 0x62 | 0x66 | 0x6E | 0x72 | 0x74 | (0x75, Rep(hexdigit, 4)))];
-  let string_char    = [%sedlex.regexp? escaped_string | unsc_string];
-  let string         = [%sedlex.regexp? ("\"" , (Star (string_char)) , '"')];
-  // let string      = [%sedlex.regexp? ('"', Star(Compl('"') | "\\\""), '"')];
+  let esc_string     = [%sedlex.regexp? ("\\", 0x22 | 0x5C | 0x2F | 0x62 | 0x66 | 0x6E | 0x72 | 0x74 | (0x75, Rep(hexdigit, 4)))];
+  let char           = [%sedlex.regexp? esc_string | unsc_string];
+  let string         = [%sedlex.regexp? ("\"" , (Star (char)) , '"')];
 
   let unquote = x => String.sub(x, 1, String.length(x) - 2);  
 
   switch%sedlex (buf) {
   | blank   => tokenizer(buf)
   | newline => Sedlexing.new_line(buf) ; tokenizer(buf)
+  | "true"  => TRUE
+  | "false" => FALSE
   | "{"     => LEFTBRACE
   | "}"     => RIGHTBRACE
   | "["     => LEFTBRACKET

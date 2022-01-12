@@ -11,6 +11,8 @@
 %token RIGHTBRACKET
 %token COMMA
 %token COLON
+%token TRUE
+%token FALSE
 %token EOF
 
 %start <Ast.json> prog %%
@@ -19,6 +21,8 @@ prog:
   | v = value ; EOF { v }  
 
 value: 
+  | b = TRUE   { JsonBool(true) }
+  | b = FALSE  { JsonBool(false) }
   | s = STRING { JsonString(s) } 
   | i = INT    { JsonNumber(i) }
   | a = array  { a }

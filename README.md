@@ -27,7 +27,8 @@
 (JsonObject
    [("user",
      (JsonObject
-        [("active", (JsonBool true)); ("name", (JsonString "nogw"));
+        [("active", (JsonBool true)); 
+         ("name", (JsonString "nogw"));
          ("years", (JsonNumber 12));
          ("emoji", (JsonString "\240\159\152\128"));
          ("weight", (JsonFloat 56.5));

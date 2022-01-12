@@ -16,12 +16,6 @@ let readfile = filename => {
 
 open Lib;
 
-// let parse = (s: string): Ast.json => {
-//   let lexbuf = Lexing.from_string(s);
-//   let ast = Parser.prog(Lexer.token, lexbuf)
-//   ast
-// }
-
 let expression_value =
   MenhirLib.Convert.Simplified.traditional2revised(
     Parser.prog,
@@ -38,4 +32,18 @@ let parse = code => {
   expression_value(provider(buf));
 };
 
-let () = readfile("tests/A.json") |> parse |> Ast.show_json |> print_endline 
+let json = {|
+  {
+    "user": {
+      "active": true,
+      "name": "nogw",
+      "years": 12,
+      "emoji": "😀",
+      "weight": 56.5,
+      "number": null,
+      "interests": ["fruits", "terraria", "functional programming"]
+    }
+  }
+|}
+
+let () = json |> parse |> Ast.show_json |> print_endline 

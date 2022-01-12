@@ -8,6 +8,7 @@ let rec tokenizer = buf => {
   let newline = [%sedlex.regexp? '\r' | '\n' | "\r\n"];
   let digit   = [%sedlex.regexp? '0' .. '9'];
   let int     = [%sedlex.regexp? (Opt('-'), Plus(digit))];
+  let float   = [%sedlex.regexp? (int, '.') | ('.', Plus(digit)) | (int, '.', Plus(digit))];
   let letter  = [%sedlex.regexp? 'a' .. 'z' | 'A' .. 'Z'];
 
   let hexdigit       = [%sedlex.regexp? '0'..'9' | 'a'..'f' | 'A'..'F'];
@@ -21,6 +22,7 @@ let rec tokenizer = buf => {
   switch%sedlex (buf) {
   | blank   => tokenizer(buf)
   | newline => Sedlexing.new_line(buf) ; tokenizer(buf)
+  | "null"  => NULL
   | "true"  => TRUE
   | "false" => FALSE
   | "{"     => LEFTBRACE
@@ -29,8 +31,9 @@ let rec tokenizer = buf => {
   | "]"     => RIGHTBRACKET
   | ","     => COMMA
   | ":"     => COLON
-  | string  => STRING(unquote (Sedlexing.Utf8.lexeme (buf)))
   | int     => INT(int_of_string (Sedlexing.Utf8.lexeme (buf)))
+  | float   => FLOAT(float_of_string (Sedlexing.Utf8.lexeme (buf)))
+  | string  => STRING(unquote (Sedlexing.Utf8.lexeme (buf)))
   | eof     => EOF
   | _       => raise(SyntaxError("[LEXER ERROR] Illegal character"))
   };

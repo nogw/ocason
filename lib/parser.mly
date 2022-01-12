@@ -4,8 +4,9 @@
 
 %token LEFTBRACE
 %token RIGHTBRACE
-// todo: float, bool
+%token NULL
 %token <int> INT
+%token <float> FLOAT
 %token <string> STRING
 %token LEFTBRACKET
 %token RIGHTBRACKET
@@ -21,10 +22,12 @@ prog:
   | v = value ; EOF { v }  
 
 value: 
+  | n = NULL   { JsonNull }
+  | i = INT    { JsonNumber(i) }
+  | f = FLOAT  { JsonFloat (f) }
+  | s = STRING { JsonString(s) } 
   | b = TRUE   { JsonBool(true) }
   | b = FALSE  { JsonBool(false) }
-  | s = STRING { JsonString(s) } 
-  | i = INT    { JsonNumber(i) }
   | a = array  { a }
   | o = obj    { o }
 

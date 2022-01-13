@@ -50,6 +50,8 @@ let provider = (buf, ()) => {
   (token, start, stop);
 };
 
+type t = Ast.json
+
 let parse_from_string = str => {
   str 
   |> Sedlexing.Utf8.from_string

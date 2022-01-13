@@ -1,45 +1,29 @@
-# rejson
-🗄️ A JSON Parser in Reason
+## 🗄️ Rejson - A JSON Parser in Reason
 
 ## TODO
 
-- [x] use sedlex
 - [x] json -> ast 
-- [ ] ast -> json
+- [x] ast -> json
+- [ ] tests
 
-### received:
-```
+```ocaml
+let json = {|
 { 
   "user": {
     "active": true,
     "props": {
-      "name": "nogw",
-      "emoji": "😀",
-      "years": 12,
-      "weight": 56.5,
-      "phone": null,
-      "interests": ["fruits", "functional programming", "terraria"]
+      "name": "nogw"
     }
   }
 } 
-```
- 
-### expect: 
-```ocaml
-(JsonObject
-   [("user",
-    (JsonObject
-      [("active", (JsonBool true));
-       ("props",
-       (JsonObject
-         [("name", (JsonString "nogw"));
-          ("emoji", (JsonString "\240\159\152\128"));
-          ("years", (JsonNumber 12)); 
-          ("weight", (JsonFloat 56.5));
-          ("phone", JsonNull);
-          ("interests",
-            (JsonArray
-             [(JsonString "fruits");
-              (JsonString "functional programming");
-              (JsonString "terraria")]))]))]))])
+|} 
+
+let () = 
+  json
+  |> Basic.from_string
+  |> Basic.Util.key("user") 
+  |> Basic.Util.key("props")
+  |> Basic.Util.key("name")
+  |> Basic.Util.to_string
+  |> print_endline // nogw
 ```

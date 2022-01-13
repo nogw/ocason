@@ -50,7 +50,16 @@ let provider = (buf, ()) => {
   (token, start, stop);
 };
 
-let parse = code => {
-  let buf = Sedlexing.Utf8.from_string(code);
-  expression_value(provider(buf));
+let parse_from_string = str => {
+  str 
+  |> Sedlexing.Utf8.from_string
+  |> provider 
+  |> expression_value
 };
+
+let parse_from_channel = ic => {
+  ic 
+  |> Sedlexing.Utf8.from_channel
+  |> provider
+  |> expression_value 
+}

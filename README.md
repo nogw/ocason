@@ -9,32 +9,37 @@
 
 ### received:
 ```
-{
+{ 
   "user": {
     "active": true,
-    "name": "nogw",
-    "years": 12,
-    "emoji": "😀",
-    "weight": 56.5,
-    "number": null,
-    "interests": ["fruits", "terraria", "functional programming"]
+    "props": {
+      "name": "nogw",
+      "emoji": "😀",
+      "years": 12,
+      "weight": 56.5,
+      "phone": null,
+      "interests": ["fruits", "functional programming", "terraria"]
+    }
   }
-}
+} 
 ```
  
 ### expect: 
 ```ocaml
 (JsonObject
    [("user",
-     (JsonObject
-        [("active", (JsonBool true)); 
-         ("name", (JsonString "nogw"));
-         ("years", (JsonNumber 12));
-         ("emoji", (JsonString "\240\159\152\128"));
-         ("weight", (JsonFloat 56.5));
-         ("number", JsonNull);
-         ("interests",
-           (JsonArray
-              [(JsonString "fruits"); (JsonString "terraria");
-               (JsonString "functional programming")]))]))])
+    (JsonObject
+      [("active", (JsonBool true));
+       ("props",
+       (JsonObject
+         [("name", (JsonString "nogw"));
+          ("emoji", (JsonString "\240\159\152\128"));
+          ("years", (JsonNumber 12)); 
+          ("weight", (JsonFloat 56.5));
+          ("phone", JsonNull);
+          ("interests",
+            (JsonArray
+             [(JsonString "fruits");
+              (JsonString "functional programming");
+              (JsonString "terraria")]))]))]))])
 ```

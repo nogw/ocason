@@ -50,16 +50,14 @@ let provider = (buf, ()) => {
   (token, start, stop);
 };
 
-type t = Ast.json
-
-let parse_from_string = str => {
+let from_string = str => {
   str 
   |> Sedlexing.Utf8.from_string
   |> provider 
   |> expression_value
 };
 
-let parse_from_channel = ic => {
+let from_channel = ic => {
   ic 
   |> Sedlexing.Utf8.from_channel
   |> provider

@@ -2,8 +2,6 @@ open Ast
 
 exception TypeError(string)
 
-type t = json
-
 let typeof = {
   fun
   | JsonNull      => "null"

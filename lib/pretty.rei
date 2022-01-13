@@ -1,7 +1,5 @@
 exception InvalidJson(string)
 
-type t
+let to_string : (~std: bool=?, Ast.json) => string
 
-let to_string : (~std: bool=?, t) => string
-
-let to_channel : (~std: bool=?, out_channel, t) => unit
+let to_channel : (~std: bool=?, out_channel, Ast.json) => unit

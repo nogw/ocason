@@ -44,8 +44,6 @@ let pretty = (~std=false, out, x) =>
   ? raise(InvalidJson("root is not an object or array"))
   : Format.fprintf(out, "@[<hv2>%a@]", format(std), (x :> Ast.json));	
 
-type t = Ast.json
-
 let to_string = (~std=?, x) => Format.asprintf("%a", pretty(~std?), x); 
 
 let to_channel = (~std=?, oc, x) => Format.fprintf(Format.formatter_of_out_channel(oc), "%a@?", pretty(~std?), x)

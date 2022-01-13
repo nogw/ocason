@@ -1,21 +1,19 @@
 exception TypeError(string)
 
-type t
+let typeof : Ast.json => string
 
-let typeof : t => string
+let to_string : Ast.json => string
 
-let to_string : t => string
+let to_bool : Ast.json => bool
 
-let to_bool : t => bool
+let to_int : Ast.json => int
 
-let to_int : t => int
+let to_float : Ast.json => float
 
-let to_float : t => float
+let to_list : Ast.json => list(Ast.json)
 
-let to_list : t => list(t)
+let to_object : Ast.json => list((string, Ast.json))
 
-let to_object : t => list((string, t))
+let key : (string, Ast.json) => Ast.json
 
-let key : (string, t) => t
-
-let keys : t => list(string)
+let keys : Ast.json => list(string)

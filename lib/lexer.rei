@@ -1,7 +1,5 @@
 exception SyntaxError(string)
 
-type t
+let from_string : string => Ast.json
 
-let parse_from_string : string => t
-
-let parse_from_channel : in_channel => t
+let from_channel : in_channel => Ast.json

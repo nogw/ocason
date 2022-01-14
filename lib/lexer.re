@@ -63,3 +63,5 @@ let from_channel = ic => {
   |> provider
   |> expression_value 
 }
+
+let pp = (x) => Ast.show_json (x)

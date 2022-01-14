@@ -27,6 +27,24 @@ let () =
   //           ("props", 
   //             (JsonObject [("name", (JsonString "nogw"))]))]))])
 ```
+
+---
+
+Read json from Variants
+
+```reason
+open Basic
+
+let json' = JsonObject([("name", JsonString("nogw"))])
+
+let () = {
+  json' 
+  |> Basic.to_string 
+  |> print_endline 
+  // { "name": "nogw" }  
+}
+```
+
 ---
 
 Read json from file
@@ -54,11 +72,11 @@ Write json
 ```reason
 open Basic
 
-let json' = JsonObject([("name", JsonString("nogw"))])
+let json = JsonObject([("name", JsonString("nogw"))])
 
 let () = {
   let oc = open_out("test.json")
-  Basic.to_channel(oc, json') 
+  Basic.to_channel(oc, json) 
 }
 ```
 

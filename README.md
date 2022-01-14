@@ -1,12 +1,72 @@
 ## 🗄️ Rejson - A JSON Parser in Reason
+## Examples
 
-## TODO
+Read json from string
+```reason
+let json = {|
+{ 
+  "user": {
+    "active": true,
+    "props": {
+      "name": "nogw"
+    }
+  }
+} 
+|} 
 
-- [x] json -> ast 
-- [x] ast -> json
-- [ ] tests
+let () = 
+  json 
+  |> Basic.from_string 
+  |> Basic.pp
+  |> print_endline
 
-```ocaml
+  // (JsonObject
+  //    [("user",
+  //      (JsonObject
+  //         [("active", (JsonBool true));
+  //           ("props", 
+  //             (JsonObject [("name", (JsonString "nogw"))]))]))])
+```
+---
+
+Read json from file
+
+```reason 
+let () = 
+  open_in("test.json")
+  |> Basic.from_channel 
+  |> Basic.pp
+  |> print_endline
+
+  // (JsonObject
+  //    [("user",
+  //      (JsonObject
+  //         [("active", (JsonBool true));
+  //           ("props", 
+  //             (JsonObject [("name", (JsonString "nogw"))]))]))])
+
+```
+
+---
+
+Write json
+
+```reason
+open Basic
+
+let json' = JsonObject([("name", JsonString("nogw"))])
+
+let () = {
+  let oc = open_out("test.json")
+  Basic.to_channel(oc, json') 
+}
+```
+
+---
+
+A simple example of access to the json key
+
+```reason
 let json = {|
 { 
   "user": {

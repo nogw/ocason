@@ -27,6 +27,8 @@ let key () =
   (json' |> Util.key "name" |> Util.to_string)
   "nogw"
 
+(* TODO: for some reason this test only runs if I run it using "sudo esy test", 
+  I still don't understand this problem, but I believe it is Dune file *)
 let write_file () =
   Alcotest.(check string)
   "write"

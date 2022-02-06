@@ -9,6 +9,10 @@ let from_string () =
   (json |> Lexer.from_string |> Pretty.to_string)
   (json' |> Pretty.to_string)
 
+(* i initially would not generate a temporary file, i would leave it in a "data" folder *)
+(* but for some reason it's having a "permission denied" bug, and at the moment i couldn't solve it *)
+(* so i believe that MAYBE i will at some point try to solve this, even if i don't change anything. *)
+
 let from_channel () =
   Alcotest.(check string)
   "from channel"

@@ -52,7 +52,7 @@ let write_file () =
     open_in output_file |> input_line
   )
   json
-
+  
 let () = 
   let open Alcotest in 
   run "OCason" [

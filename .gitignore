@@ -2,3 +2,4 @@ _build
 _esy
 node_modules
 rejson.install
+.vscode

@@ -12,7 +12,16 @@ let from_string () =
 let from_channel () =
   Alcotest.(check string)
   "from channel"
-  (open_in "data/input.json" |> Lexer.from_channel |> Pretty.to_string)
+  (
+    let input_file = Filename.temp_file "test_yojson_from_file" ".json" in
+    let oc = open_out input_file in
+    Printf.fprintf oc "%s\n" json;
+    close_out oc;
+
+    open_in input_file 
+    |> Lexer.from_channel 
+    |> Pretty.to_string
+  )
   (json' |> Pretty.to_string)
 
 let to_string () =
@@ -27,17 +36,16 @@ let key () =
   (json' |> Util.key "name" |> Util.to_string)
   "nogw"
 
-(* TODO: for some reason this test only runs if I run it using "sudo esy test", 
-  I still don't understand this problem, but I believe it is Dune file *)
 let write_file () =
   Alcotest.(check string)
   "write"
   (
-    let oc = open_out "data/output.json" in
+    let output_file = Filename.temp_file "output" ".json" in
+    let oc = open_out output_file in
     Pretty.to_channel oc json';
     close_out oc;
 
-    open_in "data/input.json" |> input_line
+    open_in output_file |> input_line
   )
   json
 

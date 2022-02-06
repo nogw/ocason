@@ -9,7 +9,7 @@
   },
   "scripts": {
     "watch": "esy dune build -p #{self.name} --watch",
-    "test": "esy dune test",
+    "test": "esy x dune runtest",
     "start": "esy x #{self.name}.exe"
   },
   "dependencies": {

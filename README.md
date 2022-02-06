@@ -1,3 +1,5 @@
+I see no more reason for me to program in ReasonML instead of OCaml, so i'm doing this substitution
+
 ## 🗄️ Rejson - A JSON Parser in Reason
 ## Examples
 

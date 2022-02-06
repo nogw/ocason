@@ -39,21 +39,21 @@ let to_float =
 
 let to_list = 
   function
-  | JsonArray(l) -> l
+  | JsonArray l -> l
   | js -> raise (error_message "list" js)
 
 let to_object = 
   function
-  | JsonObject(o) -> o
+  | JsonObject o -> o
   | js -> raise (error_message "object" js)
 
 let key mem js =
   match js with
-  | ((JsonObject (obj))) ->
+  | ((JsonObject obj)) ->
       (try List.assoc mem obj with | Not_found  -> JsonNull)
   | _ -> raise (error_message "object" js)
 
 let keys = 
   function
-  | JsonObject(obj) -> List.map (fun (k,_)  -> k) obj
+  | JsonObject obj -> List.map (fun (k,_)  -> k) obj
   | js -> raise (error_message "object" js)

@@ -1,4 +1,4 @@
-exception TypeErrorstring
+exception TypeError of string 
 
 val typeof : Ast.json -> string
 
@@ -12,7 +12,7 @@ val to_float : Ast.json -> float
 
 val to_list : Ast.json -> Ast.json list
 
-val to_object : Ast.json -> string -> Ast.json list
+val to_object : Ast.json -> (string * Ast.json) list
 
 val key : string -> Ast.json -> Ast.json
 

@@ -1,4 +1,3 @@
-open Sedlexing.Utf8
 open Parser
 
 exception SyntaxError of string

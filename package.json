@@ -9,9 +9,11 @@
   },
   "scripts": {
     "watch": "esy dune build -p #{self.name} --watch",
+    "test": "esy dune test",
     "start": "esy x #{self.name}.exe"
   },
   "dependencies": {
+    "@opam/alcotest": "1.5.0",
     "@opam/dune": "*",
     "@opam/menhir": "20211230",
     "@opam/ocaml-lsp-server": "1.4.1",

@@ -22,12 +22,12 @@ prog:
   | v = value ; EOF { v }  
 
 value: 
-  | n = NULL   { JsonNull }
+  | NULL   { JsonNull }
+  | TRUE   { JsonBool(true) }
+  | FALSE  { JsonBool(false) }
   | i = INT    { JsonNumber(i) }
   | f = FLOAT  { JsonFloat (f) }
   | s = STRING { JsonString(s) } 
-  | b = TRUE   { JsonBool(true) }
-  | b = FALSE  { JsonBool(false) }
   | a = array  { a }
   | o = obj    { o }
 

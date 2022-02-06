@@ -5,23 +5,20 @@
   "esy": {
     "build": "dune build -p #{self.name}",
     "buildsInSource": "_build",
-    "release": {
-      "releasedBinaries": [
-        "rejson.exe"
-      ]
-    }
+    "release": { "releasedBinaries": [ "rejson.exe" ] }
   },
   "scripts": {
     "watch": "esy dune build -p #{self.name} --watch",
     "start": "esy x #{self.name}.exe"
   },
   "dependencies": {
-    "ocaml": "~4.11.0",
-    "@esy-ocaml/reason": "^3.7.0",
     "@opam/dune": "*",
-    "@opam/ppx_deriving": "5.2.1",
     "@opam/menhir": "20211230",
-    "@opam/sedlex": "2.5"
+    "@opam/ocaml-lsp-server": "1.4.1",
+    "@opam/ocamlformat": "0.20.1",
+    "@opam/ppx_deriving": "5.2.1",
+    "@opam/sedlex": "2.5",
+    "ocaml": "~4.11.0"
   },
   "devdependencies": {
     "@opam/ocamlformat": "*",
